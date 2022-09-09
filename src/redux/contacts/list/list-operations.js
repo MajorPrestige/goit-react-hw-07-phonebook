@@ -59,10 +59,11 @@ export const deleteCheckedContacts = createAsyncThunk(
   'contacts/list/items/deleteChecked',
   async (checkedContacts, { rejectWithValue }) => {
     try {
-      const data = checkedContacts.map(({ id }) => {
-        axiosDeleteContacts(id);
-        return id;
-      });
+      for (let i = 0; i < checkedContacts.length; i += 1) {
+        await axiosDeleteContacts(checkedContacts[i].id);
+      }
+
+      const data = checkedContacts.map(({ id }) => id);
       return data;
     } catch (error) {
       return rejectWithValue(error);
