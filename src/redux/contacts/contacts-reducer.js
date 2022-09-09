@@ -1,10 +1,10 @@
 import { combineReducers } from '@reduxjs/toolkit';
 
-import items from './items/items-slice';
+import list from './list/list-slice';
 import filter from './filter/filter-slice';
 
 const contactsReducer = combineReducers({
-  items,
+  list,
   filter,
 });
 

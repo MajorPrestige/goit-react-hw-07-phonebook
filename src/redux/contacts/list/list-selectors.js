@@ -1,5 +1,8 @@
 export const getFilteredContacts = ({ contacts }) => {
-  const { items, filter } = contacts;
+  const {
+    list: { items },
+    filter,
+  } = contacts;
   if (!filter) {
     return items;
   }

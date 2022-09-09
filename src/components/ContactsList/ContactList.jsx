@@ -1,30 +1,42 @@
-import ContactsItem from 'components/ContactsItem/ContactsItem';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+// import {
+//   deleteContact,
+//   checkContact,
+//   deleteCheckedContact,
+// } from 'redux/contacts/list/list-slice';
+
 import {
+  getContacts,
   deleteContact,
-  checkContact,
-  deleteCheckedContact,
-} from 'redux/contacts/items/items-slice';
+  deleteCheckedContacts,
+  checkContacts,
+} from 'redux/contacts/list/list-operations';
+import ContactsItem from 'components/ContactsItem/ContactsItem';
+import { getFilteredContacts } from 'redux/contacts/list/list-selectors';
 import s from './ContactList.module.css';
-import { getFilteredContacts } from 'redux/contacts/items/items-selectors';
 
 const ContactLists = () => {
   const contacts = useSelector(getFilteredContacts);
 
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(getContacts());
+  }, [dispatch]);
+
   const handleDeleteClick = id => {
     dispatch(deleteContact(id));
   };
 
-  const handleCheckboxChange = e => {
-    const contactId = e.target.name;
-    dispatch(checkContact(contactId));
+  const handleCheckboxChange = ({ target }) => {
+    const contactId = target.name;
+    dispatch(checkContacts(contactId));
   };
 
   const handleDeleteAllClick = () => {
-    const uncheckedContact = contacts.filter(({ checked }) => !checked);
-    dispatch(deleteCheckedContact(uncheckedContact));
+    const checkedContact = contacts.filter(({ checked }) => checked);
+    dispatch(deleteCheckedContacts(checkedContact));
   };
 
   const activeButton = contacts.some(({ checked }) => checked);
