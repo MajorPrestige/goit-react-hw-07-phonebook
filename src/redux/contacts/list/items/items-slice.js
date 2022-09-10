@@ -12,7 +12,7 @@ const items = createSlice({
   initialState: [],
   extraReducers: {
     [getContacts.fulfilled]: (_, { payload }) => payload,
-    [addContact.fulfilled]: (store, { payload }) => store.unshift(payload),
+    [addContact.fulfilled]: (store, { payload }) => void store.unshift(payload),
     [deleteContact.fulfilled]: (store, { payload }) =>
       store.filter(({ id }) => id !== payload),
     [checkContacts.fulfilled]: (store, { payload }) => {
