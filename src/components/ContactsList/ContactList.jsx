@@ -1,11 +1,5 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import {
-//   deleteContact,
-//   checkContact,
-//   deleteCheckedContact,
-// } from 'redux/contacts/list/list-slice';
-
 import {
   getContacts,
   deleteContact,
@@ -13,7 +7,7 @@ import {
   checkContacts,
 } from 'redux/contacts/list/list-operations';
 import ContactsItem from 'components/ContactsItem/ContactsItem';
-import { getFilteredContacts } from 'redux/contacts/list/list-selectors';
+import { getFilteredContacts } from 'redux/contacts/list/items/items-selectors';
 import s from './ContactList.module.css';
 
 const ContactLists = () => {

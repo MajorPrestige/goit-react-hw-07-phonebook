@@ -28,6 +28,19 @@ export const addContact = createAsyncThunk(
     } catch (error) {
       return rejectWithValue(error);
     }
+  },
+  {
+    condition: (contact, { getState }) => {
+      const { contacts } = getState();
+      const duplicateContact = contacts.list.items.find(
+        el => el.number === contact.number
+      );
+
+      if (duplicateContact?.number === contact.number) {
+        alert(`Number: ${contact.number} is already in your contacts`);
+        return false;
+      }
+    },
   }
 );
 
