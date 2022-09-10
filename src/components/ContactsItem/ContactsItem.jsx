@@ -15,6 +15,7 @@ const ContactsItem = ({
         {name}: {number}
       </p>
       <button
+        className={s.btn}
         onClick={() => {
           handleDeleteClick(id);
         }}
