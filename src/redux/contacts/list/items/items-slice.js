@@ -5,7 +5,7 @@ import {
   deleteContact,
   checkContacts,
   deleteCheckedContacts,
-} from './list-operations';
+} from '../list-operations';
 
 const items = createSlice({
   name: 'items',
